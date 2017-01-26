@@ -1,0 +1,142 @@
+.canvas {
+  background: url(http://gallery.yopriceville.com/var/resizes/Backgrounds/Silver_Robo_Background.jpg?m=1399672800) center center;
+  background-size: cover;
+  max-width: 1050px;
+  max-height: 800px;
+  margin: 0px auto;
+}
+
+.message-board {
+  overflow: hidden;
+  z-index: 0;
+  position: fixed;
+  top:70%;
+  left:48%;
+  display:none;
+}
+
+.card {
+  border-radius: 10%;
+  border: solid 2px black;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20% 0;
+  padding: 20% 0;
+}
+
+.fight-button {
+  overflow: hidden;
+  z-index: 0;
+  position: fixed;
+  top:50%;
+  left:48%;
+  display:none;
+}
+
+.display-bar {
+  display:flex;
+  justify-content: space-between;
+}
+
+.display-top {
+  display:flex;
+  justify-content: space-around;
+}
+
+
+.display-stats {
+  background-color: gray;
+  opacity: 0.8;
+  padding: 0px 40px;
+  border: solid 1px black;
+}
+
+.display-stats>h4 {
+  color:white;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-inverse {
+  flex-direction: row-reverse;
+}
+
+h3.player-name {
+  color:white;
+  text-shadow: 1px 2px 7px black;
+  margin: 8px;
+}
+
+.floating-box {
+  color: white;
+}
+
+.player-health { 
+  width: 45%;
+  height: 20px;
+  border: solid 1px black;
+	position: relative;
+	background: darkred;
+	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.7);
+
+  transition: width .5s linear;
+}
+
+.player-health > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color:yellow;
+  box-shadow: 
+    inset 0 2px 9px rgba(255,255,255,0.9),
+    inset 0 -2px 6px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  transition: width .25s linear;
+  
+}
+
+.inverse {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+img.invert {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+h1 {
+  color: #fff;
+  margin: 20px;
+  padding: 10px 35px;
+  text-align: center;
+}
+
+.sprite {
+  margin: 100px auto;
+  display:flex;
+  justify-content: space-around;
+}
+
