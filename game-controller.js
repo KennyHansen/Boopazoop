@@ -8,21 +8,6 @@ var GameController = function () {
         draw()
     }
 
-    // this.onAddItem = function(playerName, itemName) {
-    //     game.equipItem(playerName, itemName)
-    // }
-
-    // this.onUseItem = function(playerName, itemName) {
-    //     game.useItem(playerName, itemName)
-    //     draw()
-    // }
-
-    // this.onReset = function(player1, player2) {
-    //     game.reset()
-    //     console.log("Game is Reset")
-    //     draw() 
-    // }
-
     this.makeBot = function(event, botNum){
         event.preventDefault()
         var roboNames = document.getElementById('robo-name-' + botNum)
@@ -121,4 +106,19 @@ var GameController = function () {
         var playerHealthTag = playerHealthId.getElementsByTagName("span");
         playerHealthTag[0].style = "width:" + healthPercent2 + "%"
     }
+
+    // this.onAddItem = function(playerName, itemName) {
+    //     game.equipItem(playerName, itemName)
+    // }
+
+    // this.onUseItem = function(playerName, itemName) {
+    //     game.useItem(playerName, itemName)
+    //     draw()
+    // }
+
+    // this.onReset = function(player1, player2) {
+    //     game.reset()
+    //     console.log("Game is Reset")
+    //     draw() 
+    // }
 }
