@@ -8,11 +8,11 @@
 <body>
 	<div class="canvas">
 		<div class="display-bar">
-			<div class="player-health" id="robo-health-1">
+			<div class="player-health" id="robo-health-1" style="display:none">
 				<span></span>
 				<!--<span class="health-loss"></span>-->
 			</div>
-			<div class="player-health inverse" id="robo-health-2">
+			<div class="player-health inverse" id="robo-health-2" style="display:none">
 				<span></span>
 				<!--<span class="health-loss"></span>-->
 			</div>
@@ -28,7 +28,7 @@
 			</form>
 		</div>
 		<button class="hidden-button" id="fight-start" onclick="gc.startFight()">FIGHT</button>
-		<button class="hidden-button" id="reset" onclick="gc.reset()">FIGHT</button>
+		<button class="hidden-button" id="reset" onclick="gc.reset()">Reset</button>
 		<!--<div class="floating-box">FIGHT</div>-->
 		<div class="stage">
 			<img class="invert" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png" alt="" height="250" id="robo-img-1">

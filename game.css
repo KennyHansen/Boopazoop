@@ -15,7 +15,8 @@
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border: 2px solid darkgray;
-  opacity: 0.7;
+  padding-left: 12px;
+  opacity: 0.8;
   /*display:none;*/
 }
 
@@ -69,7 +70,7 @@
 
 .display-stats {
   background-color: gray;
-  opacity: 0.8;
+  opacity: 0.85;
   padding: 0px 40px;
   border: solid 1px black;
 }

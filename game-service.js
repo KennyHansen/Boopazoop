@@ -183,7 +183,6 @@ var GameService = function () {
             draw()
         } else {
             console.log(target.name + ' is down, the fight is over!')
-            toggleResetButton()
         }
     }
 
@@ -208,8 +207,9 @@ var GameService = function () {
         }
     }
 
-    var toggleResetButton = function() {
-         var button = document.getElementById('reset')
+    dataStore.toggleResetButton = function() {
+        
+        var button = document.getElementById('reset')
         if (button.style.display == 'block') {
             button.style.display = 'none';
         } else {
@@ -226,7 +226,7 @@ var GameService = function () {
     // }
 
     dataStore.generateBot = function(botName, botNum) {
-        console.log("Robot "+ botNum +" created")
+        dataStore.updateLog("Robot "+ botNum + " ("+ botName +")" +" created")
 
         var robo = 'robo'+ botNum
 
@@ -286,20 +286,25 @@ var GameService = function () {
     function killPlayer(player) {
         player.health = 0;
         player.isAlive = false;
+        dataStore.toggleResetButton()
     }
 
     function logDamage(attacker, target, attackType, damage, isAlive) {
         var damageMessage = attacker.name + " hits " + target.name + " with " + attackType.name + " for " + damage + " damage (" + target.health + "=>" + (target.health - damage) + ")"
-        console.log(damageMessage);
-        document.getElementById("log").innerHTML += '<br>' + damageMessage
+        dataStore.updateLog(damageMessage)
         if (!isAlive) {
             var killMessage = attacker.name + ' knocked out ' + target.name + '!!!'
-            console.log(killMessage)
-            document.getElementById("log").innerHTML += '<br>' + killMessage
+            dataStore.updateLog(killMessage)
         }
     }
 
-
+    dataStore.updateLog = function(message) {
+        console.log(message)
+        var element = document.getElementById('log');
+        element.innerHTML += '<br>' + message
+        element.scrollTop = element.scrollHeight - element.clientHeight;
+    }
+ 
     function playSound(soundFile) {
         // Plays a sound like Hadouken
         var audio = new Audio('sounds/' + soundFile + '.mp3');
