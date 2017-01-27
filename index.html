@@ -7,15 +7,6 @@
 </head>
 <body>
 	<div class="canvas">
-		<div class="display-bar">	
-			<form id="robo-name-1" onsubmit="gc.makeBot1(event)">
-				<input type="text" class="player-name" required></input>
-			</form>
-			<form id="robo-name-2" onsubmit="gc.makeBot2(event)">
-				<input type="text" class="player-name" required></input>
-			</form>
-		</div>
-		
 		<div class="display-bar">
 			<div class="player-health" id="robo-health-1">
 				<span></span>
@@ -26,14 +17,25 @@
 				<!--<span class="health-loss"></span>-->
 			</div>
 		</div>
-		<button class="fight-button" onclick="gc.startFight()">FIGHT</button>
+		<div class="display-bar">	
+			<form id="robo-name-1" onsubmit="gc.makeBot(event, 1)">
+				<input type="text" class="player-name" placeholder="Enter robot name" maxLength="17" required></input>
+				<button type="submit">Build</button>
+			</form>
+			<form id="robo-name-2" onsubmit="gc.makeBot(event, 2)">
+				<input type="text" class="player-name" placeholder="Enter robot name" maxLength="17" required></input>
+				<button type="submit">Build</button>
+			</form>
+		</div>
+		<button class="hidden-button" id="fight-start" onclick="gc.startFight()">FIGHT</button>
+		<button class="hidden-button" id="reset" onclick="gc.reset()">FIGHT</button>
 		<!--<div class="floating-box">FIGHT</div>-->
 		<div class="stage">
-			<img class="invert" src="" alt="" height="250" id="robo-img-1">
-			<img src="" alt="" height="250" id="robo-img-2">
+			<img class="invert" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png" alt="" height="250" id="robo-img-1">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png" alt="" height="250" id="robo-img-2">
 		</div>
-		<div class="message-board">
-			<div class="card"><p>Boopazoop</p></div>
+		<div class="message-board" id="log">
+
 		</div>
 	</div>
 	

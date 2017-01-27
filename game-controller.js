@@ -23,26 +23,14 @@ var GameController = function () {
     //     draw() 
     // }
 
-    this.makeBot1 = function(event){
+    this.makeBot = function(event, botNum){
         event.preventDefault()
-        var roboNames = document.getElementById('robo-name-1')
+        var roboNames = document.getElementById('robo-name-' + botNum)
         var text = roboNames.elements[0].value;
         console.log(text)
         // document.getElementById("roboName").innerHTML = text;
         if (text) {
-            game.generateBot1(text)
-            checkGameState()
-        }
-    }
-
-    this.makeBot2 = function(event) {
-        event.preventDefault()
-        var roboNames = document.getElementById('robo-name-2')
-        var text = roboNames.elements[0].value;
-        console.log(text)
-        // document.getElementById("roboName").innerHTML = text;
-        if (text) {
-            game.generateBot2(text)
+            game.generateBot(text, botNum)
             checkGameState()
         }
     }
@@ -60,6 +48,10 @@ var GameController = function () {
         }
     }
 
+    this.reset = function() {
+
+    }
+
     function checkGameState() {
         var roboName1 = document.getElementById('robo-name-1')
         var roboName2 = document.getElementById('robo-name-2')
@@ -72,11 +64,11 @@ var GameController = function () {
     }
 
     function toggleFightButton() {
-        var button = document.getElementsByClassName('fight-button')
-        if (button[0].style.display == 'block') {
-            button[0].style.display = 'none';
+        var button = document.getElementById('fight-start')
+        if (button.style.display == 'block') {
+            button.style.display = 'none';
         } else {
-            button[0].style.display = 'block'
+            button.style.display = 'block';
         }
     }
 
@@ -96,5 +88,4 @@ var GameController = function () {
         var playerHealthTag = playerHealthId.getElementsByTagName("span");
         playerHealthTag[0].style = "width:" + healthPercent2 + "%"
     }
-
 }

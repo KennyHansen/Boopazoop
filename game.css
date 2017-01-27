@@ -2,17 +2,37 @@
   background: url(http://gallery.yopriceville.com/var/resizes/Backgrounds/Silver_Robo_Background.jpg?m=1399672800) center center;
   background-size: cover;
   max-width: 1050px;
-  max-height: 800px;
+  max-height: 900px;
   margin: 0px auto;
 }
 
 .message-board {
+  display: block;
+  overflow:auto;
+  width: 99.7%;
+  height: 200px;
+  background-color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border: 2px solid darkgray;
+  opacity: 0.7;
+  /*display:none;*/
+}
+
+.message-board>pre {
+  top: 20px;
+  display: block;
+  z-index: 1;
+  text-align: left;
+  color:black;
+  opacity: 1;
+}
+
+.message-item {
   overflow: hidden;
   z-index: 0;
-  position: fixed;
-  top:70%;
-  left:48%;
-  display:none;
+  position: absolute;
+  /*display:none;*/
 }
 
 .card {
@@ -24,11 +44,10 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 20% 0;
-  padding: 20% 0;
+  padding-top:30%;
 }
 
-.fight-button {
+.hidden-button {
   overflow: hidden;
   z-index: 0;
   position: fixed;
