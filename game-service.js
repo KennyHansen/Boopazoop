@@ -67,54 +67,58 @@ var GameService = function () {
 
     var attacks1 = [
         '0010101001011001001000010001001',
-        'boopa',
-        'klurgle',
-        'yonkle',
+        'noodle',
         'spooter',
         'fizzle',
+        'klurgle',
+        'yonkle',
         'brickle',
-        'mecha',
         'moople',
-        'kizzuble',
-        'klappa',
-        'dronkle',
-        'zupa',
-        'crackle',
-        'freeka',
-        'noodle',
         'bloopa',
+        'klappa',
+        'flabber',
+        'crackle',
         'blinkle',
-        'scrabble',
-        'oggle',
-        'pizzal',
-        'chooga',
         'zip',
-        'chonkle',
+        'scrabble',
+        'pizzal',
+        'oggle',
+        'kizzuble',
+        'dronkle',
+        'mecha',
         'burple',
         'churple',
         'zuka',
-        'blabble'
+        'chooga',
+        'blabble',
+        'zorpa',
+        'chonkle',
+        'bleeple',
+        'zupa',
+        'boopa'
     ]
 
     var attacks2 = [
         '01010010001010100100100100100010101010101010',
-        'zoop',
-        'blitz',
+        'flop',
+        'tink',
         'derp',
+        'clunk',
         'kahoot',
         'zerp',
         'chik',
-        'clunk',
         'bap',
+        'clog',
         'zork',
         'zorp',
-        'zoop',
         'tron',
-        'tink',
-        'flop',
+        'ching',
+        'blitz',
+        'zap',
         'bzzzzrrrt',
         'zop-zippity-zoop',
-        '01010010001010100100100100100010101010101010'
+        '01010010001010100100100100100010101010101010',
+        'zoop'
     ]
 
 
@@ -139,15 +143,15 @@ var GameService = function () {
         return players[botName].mobility
     }
 
-    dataStore.equipItem = function(playerName, itemKey) {
-        var player = players[playerName]
-        var item1 = items[itemKey]
-        if (items[itemKey] == item1 || items[itemKey].name == itemKey) {
-            searchItems(playerName, item1)
-            player.equippedItems.push(items[itemKey])
-            console.log(player.name + ' has equipped ' + items[itemKey].name + "!")
-        }
-    }
+    // dataStore.equipItem = function(playerName, itemKey) {
+    //     var player = players[playerName]
+    //     var item1 = items[itemKey]
+    //     if (items[itemKey] == item1 || items[itemKey].name == itemKey) {
+    //         searchItems(playerName, item1)
+    //         player.equippedItems.push(items[itemKey])
+    //         console.log(player.name + ' has equipped ' + items[itemKey].name + "!")
+    //     }
+    // }
 
     dataStore.startAttack = function(attackerName, targetName) {
         var attacker = players[attackerName]
@@ -179,6 +183,7 @@ var GameService = function () {
             draw()
         } else {
             console.log(target.name + ' is down, the fight is over!')
+            toggleResetButton()
         }
     }
 
@@ -202,6 +207,16 @@ var GameService = function () {
             }
         }
     }
+
+    var toggleResetButton = function() {
+         var button = document.getElementById('reset')
+        if (button.style.display == 'block') {
+            button.style.display = 'none';
+        } else {
+            button.style.display = 'block';
+        }
+    }
+
     // dataStore.useItem = function(playerName, itemKey) {
     //     var player = players[playerName]
     //     var item1 = items[itemKey]
@@ -210,61 +225,44 @@ var GameService = function () {
     //     }
     // }
 
-    dataStore.generateBot1 = function(botName) {
-        console.log("Robot 1 created")
+    dataStore.generateBot = function(botName, botNum) {
+        console.log("Robot "+ botNum +" created")
+
+        var robo = 'robo'+ botNum
 
         //Create image and remove text input
-        var botImage = document.getElementById('robo-img-1')
+        var botImage = document.getElementById('robo-img-' + botNum)
         var botImageUrl = "https://robohash.org/" + botName + '.png'
         botImage.src = botImageUrl
 
-        var roboNames = document.getElementById('robo-name-1')
+        var roboNames = document.getElementById('robo-name-' + botNum)
         roboNames.elements[0].parentNode.removeChild(roboNames.elements[0])
+        roboNames.elements[0].parentNode.removeChild(roboNames.elements[0])
+
         roboNames.innerHTML = `<h3 class="player-name">${botName}</h3> ${roboNames.innerHTML}`
 
         //Create stats
-        var stringNum = 0
-        for (var i = 0; i < botName.length; i++) {
-            stringNum += botName.charCodeAt(i);
-        }
-
-        Math.seed = stringNum;
+        setGeneratorSeed(botName)
 
         var health = getRandomValue(minHealth, maxHealth)
         var attacks = generateAttacks()
         var mobility = getRandomValue(minMS, maxMS)
 
-        players.robo1 = new Player(botName, health, attacks, mobility, 'robo1')
+        players[robo] = new Player(botName, health, attacks, mobility, robo)
 
 
         // players[botName] = new Player(botName, health, attacks, mobility)
     }
 
-    dataStore.generateBot2 = function(botName) {
-        console.log("Robot 2 created")
-
-        //Create image and remove text input
-        var botImage = document.getElementById('robo-img-2')
-        var botImageUrl = "https://robohash.org/" + botName + '.png'
-        botImage.src = botImageUrl
-
-        var roboNames = document.getElementById('robo-name-2')
-        roboNames.elements[0].parentNode.removeChild(roboNames.elements[0])
-        roboNames.innerHTML = `<h3 class="player-name">${botName}</h3> ${roboNames.innerHTML}`
-
-        //Create stats
+    setGeneratorSeed = function(botName) {
         var stringNum = 0
         for (var i = 0; i < botName.length; i++) {
             stringNum += botName.charCodeAt(i);
+            Math.seed = stringNum
+            stringNum = Math.seededRandom(3222)
         }
-
+        console.log(stringNum)
         Math.seed = stringNum;
-
-        var health = getRandomValue(minHealth, maxHealth)
-        var attacks = generateAttacks()
-        var mobility = getRandomValue(minMS, maxMS)
-
-        players.robo2 = new Player(botName, health, attacks, mobility, 'robo2')
     }
 
 
@@ -291,9 +289,13 @@ var GameService = function () {
     }
 
     function logDamage(attacker, target, attackType, damage, isAlive) {
-        console.log(attacker.name + " hits " + target.name + " with " + attackType.name + " for " + damage + " damage (" + target.health + "=>" + (target.health - damage) + ")");
+        var damageMessage = attacker.name + " hits " + target.name + " with " + attackType.name + " for " + damage + " damage (" + target.health + "=>" + (target.health - damage) + ")"
+        console.log(damageMessage);
+        document.getElementById("log").innerHTML += '<br>' + damageMessage
         if (!isAlive) {
-            console.log(attacker.name + ' knocked out ' + target.name + '!!!')
+            var killMessage = attacker.name + ' knocked out ' + target.name + '!!!'
+            console.log(killMessage)
+            document.getElementById("log").innerHTML += '<br>' + killMessage
         }
     }
 
