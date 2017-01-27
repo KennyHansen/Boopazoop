@@ -48,8 +48,8 @@ var GameController = function () {
 				<button type="submit">Build</button>
             `
 
-            document.getElementById('robo-img-1').src = ''
-            document.getElementById('robo-img-2').src = ''
+            document.getElementById('robo-img-1').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
+            document.getElementById('robo-img-2').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
 
             game.toggleResetButton()
             game.updateLog("Game is Reset")
