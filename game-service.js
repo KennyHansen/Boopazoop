@@ -175,7 +175,7 @@ var GameService = function () {
             // Health Check
             findAnimation(attacker.roboImg, 'Attack')
             if (health <= damage) {
-                // findAnimation(target.roboImg, 'Death')
+                findAnimation(target.roboImg, 'Death')
                 logDamage(attacker, target, attackType, health, false)
                 killPlayer(target)
             } else {
