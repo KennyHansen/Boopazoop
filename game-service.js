@@ -19,6 +19,8 @@ var GameService = function () {
     var minMS = 10
     var maxMS = 100
 
+    var animation = new Animation()
+
     // Seed function    
     // in order to work 'Math.seed' must NOT be undefined,
     // so in any case, you HAVE to provide a Math.seed
@@ -34,8 +36,8 @@ var GameService = function () {
 
     var dataStore = this;
 
-    function Player(name, health, attacks, mobility, robo) {
-        this.name = name
+    function Player(name, health, attacks, mobility, robo, roboImg) {
+        this.name = name;
         this.health = health;
         this.maxHealth = health;
         this.attacks = attacks;
@@ -44,7 +46,7 @@ var GameService = function () {
         // this.stashedItems = [];
         this.isAlive = true;
         this.robo = robo;
-        // this.sprite = name + '.png';
+        this.roboImg = roboImg;
         // this.hits = 0;
     }
 
@@ -56,14 +58,14 @@ var GameService = function () {
 
     var players = {}
 
-    var items = {
-        shield1: new Item("Shield of Lesser Blocking", { block: 2 }, "This blocks 2 damage"),
-        shield2: new Item("Shield of Blocking", { block: 5 }, "This blocks 5 damage"),
-        shield3: new Item("Shield of Greater Blocking", { block: 12 }, "This blocks 12 damage"),
-        shield4: new Item("Shield of Master Blocking", { block: 20, bonusHealth: 50 }, "This blocks 20 damage"),
+    // var items = {
+    //     shield1: new Item("Shield of Lesser Blocking", { block: 2 }, "This blocks 2 damage"),
+    //     shield2: new Item("Shield of Blocking", { block: 5 }, "This blocks 5 damage"),
+    //     shield3: new Item("Shield of Greater Blocking", { block: 12 }, "This blocks 12 damage"),
+    //     shield4: new Item("Shield of Master Blocking", { block: 20, bonusHealth: 50 }, "This blocks 20 damage"),
 
-        heal1: new Item("Choccy Milk", { heal: 10 }, "Doot")
-    }
+    //     heal1: new Item("Choccy Milk", { heal: 10 }, "Doot")
+    // }
 
     var attacks1 = [
         '0010101001011001001000010001001',
@@ -116,7 +118,7 @@ var GameService = function () {
         'blitz',
         'zap',
         'bzzzzrrrt',
-        'zop-zippity-zoop',
+        'zoop-zippity-zop',
         '01010010001010100100100100100010101010101010',
         'zoop'
     ]
@@ -171,6 +173,7 @@ var GameService = function () {
             console.log(attacker.name + ' is down, the fight is over!')
         } else if (target.isAlive) {
             // Health Check
+            findAnimation(attacker.roboImg,   'Attack')
             if (health <= damage) {
                 //Don't let the health drop below 0
                 logDamage(attacker, target, attackType, health, false)
@@ -185,6 +188,16 @@ var GameService = function () {
             console.log(target.name + ' is down, the fight is over!')
         }
     }
+
+    var findAnimation = function(roboImg, animationString) {
+        var animationType = 'animate' + animationString
+        var animateImg = document.getElementById(roboImg)
+        if (animation[animationType]) {
+            animation[animationType](animateImg, roboImg)
+        }
+    }
+
+    
 
     var counterAttack = function(target, attacker) {
         var damageType = getRandomAttack(target)
@@ -229,6 +242,7 @@ var GameService = function () {
         dataStore.updateLog("Robot "+ botNum + " ("+ botName +")" +" created")
 
         var robo = 'robo'+ botNum
+        var roboImg = 'robo-img-' + botNum
 
         //Create image and remove text input
         var botImage = document.getElementById('robo-img-' + botNum)
@@ -248,7 +262,7 @@ var GameService = function () {
         var attacks = generateAttacks()
         var mobility = getRandomValue(minMS, maxMS)
 
-        players[robo] = new Player(botName, health, attacks, mobility, robo)
+        players[robo] = new Player(botName, health, attacks, mobility, robo, roboImg)
 
 
         // players[botName] = new Player(botName, health, attacks, mobility)

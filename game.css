@@ -8,25 +8,23 @@
 
 .message-board {
   display: block;
-  overflow:auto;
-  width: 98%;
+  /*overflow:auto;*/
+  width: 100% - 4px;
   height: 200px;
   background-color: white;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border: 2px solid darkgray;
-  padding-left: 12px;
   opacity: 0.8;
   /*display:none;*/
 }
 
-.message-board>pre {
-  top: 20px;
-  display: block;
-  z-index: 1;
-  text-align: left;
-  color:black;
-  opacity: 1;
+.message-board>div {
+  display:block;
+  width: 100% - 8px;
+  overflow:auto;
+  height: 95%;
+  padding: 2px 12px;
 }
 
 .message-item {
@@ -136,6 +134,11 @@ h3.player-name {
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: "FlipH";
+}
+
+img {
+  position: relative;
+  left: 0px;
 }
 
 img.invert {

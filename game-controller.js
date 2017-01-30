@@ -51,8 +51,9 @@ var GameController = function () {
             document.getElementById('robo-img-1').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
             document.getElementById('robo-img-2').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
 
-            game.toggleResetButton()
+            // game.toggleResetButton()
             game.updateLog("Game is Reset")
+            game.toggleResetButton()
             toggleFightButton()
             toggleHealthDisplay(1)
             toggleHealthDisplay(2)
@@ -90,6 +91,39 @@ var GameController = function () {
         }
     }
 
+    // function init() {
+    //     var canvas = document.getElementById('c');
+    //     var ctx = canvas.getContext('2d');
+
+    //     var img = document.createElement('IMG');
+
+    //     img.onload = function() {
+    //         ctx.beginPath();
+    //         ctx.drawImage(img, 0, 0);
+    //         ctx.closePath();    
+    //         ctx.globalCompositeOperation = 'destination-out';
+    //     }
+
+    //     img.src = "http://dl.dropbox.com/u/12501653/FROST.png";
+
+    //     function drawPoint(pointX,pointY){
+    //         var grd = ctx.createRadialGradient(pointX, pointY, 0, pointX, pointY, 50);
+    //         grd.addColorStop(0, "rgba(255,255,255,.6)"); 
+    //         grd.addColorStop(1, "transparent"); 
+    //         ctx.fillStyle = grd;
+    //         ctx.beginPath();
+    //         ctx.arc(pointX,pointY,50,0,Math.PI*2,true);
+    //         ctx.fill();
+    //         ctx.closePath();
+    //     }
+        
+    //     canvas.addEventListener('mousemove',function(e){
+    //         e.preventDefault();
+    //         drawPoint(e.screenX,e.screenY - 64);
+    //     },false);
+    // }
+    
+
     function draw() {
         var health1 = game.getPlayerHealth('robo1')
         var health2 = game.getPlayerHealth('robo2')
@@ -106,6 +140,7 @@ var GameController = function () {
         var playerHealthTag = playerHealthId.getElementsByTagName("span");
         playerHealthTag[0].style = "width:" + healthPercent2 + "%"
     }
+    
 
     // this.onAddItem = function(playerName, itemName) {
     //     game.equipItem(playerName, itemName)
