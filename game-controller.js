@@ -42,6 +42,9 @@ var GameController = function () {
             var roboName1 = document.getElementById('robo-name-1')
             var roboName2 = document.getElementById('robo-name-2')
 
+            var roboImg1 = document.getElementById('robo-img-1')
+            var roboImg2 = document.getElementById('robo-img-2')
+
             roboName1.innerHTML = `
                 <input type="text" class="player-name" placeholder="Enter robot name" maxLength="17" required></input>
 				<button type="submit">Build</button>
@@ -52,8 +55,10 @@ var GameController = function () {
 				<button type="submit">Build</button>
             `
 
-            document.getElementById('robo-img-1').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
-            document.getElementById('robo-img-2').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
+            roboImg1.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
+            roboImg1.style.opacity = 1
+            roboImg2.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/3by2white.svg/150px-3by2white.svg.png"
+            roboImg2.style.opacity = 1
 
             // game.toggleResetButton()
             game.updateLog("Game is Reset")
