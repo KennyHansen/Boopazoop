@@ -160,10 +160,10 @@ var GameService = function () {
         var target = players[targetName]
         var damageType = getRandomAttack(attacker)
 
-        dataStore.dealDamage(attackerName, targetName, damageType)
+        dealDamage(attackerName, targetName, damageType)
     }
     
-    dataStore.dealDamage = function(attackerName, targetName, attackType) {
+    var dealDamage = function(attackerName, targetName, attackType) {
         var attacker = players[attackerName]
         var target = players[targetName]
         var health = target.health
@@ -173,12 +173,13 @@ var GameService = function () {
             console.log(attacker.name + ' is down, the fight is over!')
         } else if (target.isAlive) {
             // Health Check
-            findAnimation(attacker.roboImg,   'Attack')
+            findAnimation(attacker.roboImg, 'Attack')
             if (health <= damage) {
-                //Don't let the health drop below 0
+                // findAnimation(target.roboImg, 'Death')
                 logDamage(attacker, target, attackType, health, false)
                 killPlayer(target)
             } else {
+                findAnimation(target.roboImg, 'Hit')
                 logDamage(attacker, target, attackType, damage, true)
                 target.health = +(health - damage).toFixed(1);
             }
@@ -203,7 +204,7 @@ var GameService = function () {
         var damageType = getRandomAttack(target)
         var targetName = target.robo.toLowerCase()
         var attackerName = attacker.robo.toLowerCase()
-        dataStore.dealDamage(targetName, attackerName, damageType, true)
+        dealDamage(targetName, attackerName, damageType, true)
     }
 
     var getRandomAttack = function(player) {

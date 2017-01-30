@@ -3,10 +3,10 @@ var GameController = function () {
 
     var game = new GameService()
 
-    this.onAttack = function(attacker, target, attackName) {
-        game.dealDamage(attacker, target, attackName)
-        draw()
-    }
+    // this.onAttack = function(attacker, target, attackName) {
+    //     game.dealDamage(attacker, target, attackName)
+    //     draw()
+    // }
 
     this.makeBot = function(event, botNum){
         event.preventDefault()
@@ -26,11 +26,15 @@ var GameController = function () {
             var robo2Speed = game.getBotSpeed('robo2')
             
             if(robo1Speed > robo2Speed) {
-                game.startAttack('robo1','robo2')
+                startAttack('robo1','robo2')
             } else {
-                game.startAttack('robo2','robo1')
+                startAttack('robo2','robo1')
             }
         }
+    }
+
+    var startAttack = function(robo1, robo2) {
+         game.startAttack(robo1, robo2)
     }
 
     this.reset = function() {
