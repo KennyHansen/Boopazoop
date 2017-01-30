@@ -31,8 +31,32 @@ function Animation() {
                 clearInterval(id);
             } else {
                 pos++; 
-                img.style.left = (pos * direction) + 'px'; 
+                img.style.left = (pos * direction * 2) + 'px'; 
             }
         }
+    }
+
+    dataStore.animateHit = function (img, roboImg) {
+        var timer = 0;
+        var id = setInterval(frame, 5);
+
+        function frame() {
+            if (timer == 50) {
+                img.style.left = '0px'; 
+                clearInterval(id);
+            } else {
+                var pos = Math.sin(timer/10*Math.PI)
+                timer++;
+                img.style.left = (pos * 10) + 'px'; 
+            }
+        }
+    }
+
+    dataStore.animateDeath = function (img, roboImg) {
+        
+    }
+
+    dataStore.animateBuild = function (img, roboImg) {
+        
     }
 }
